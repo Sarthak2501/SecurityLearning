@@ -1,18 +1,18 @@
 package com.example.demo.service;
 
-import com.example.demo.Domain.AppUser;
-import com.example.demo.Domain.Role;
+import com.example.demo.Dao.AppUserDao;
+import com.example.demo.Dao.RoleDao;
 //import org.apache.catalina.User;
 
 import java.util.List;
 
 public interface UserService {
-    AppUser saveUser(AppUser user);
-    Role saveRole(Role role);
+    AppUserDao saveUser(AppUserDao user);
+    RoleDao saveRole(RoleDao role);
 
     void addRoleToUser(String username,String roleName);
 
-    AppUser getUsers(String username);
+    AppUserDao getUsers(String username);
 
-    List<AppUser> getUsers();
+    List<AppUserDao> getUsers();
 }

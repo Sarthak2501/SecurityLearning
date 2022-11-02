@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.Domain.AppUser;
-import com.example.demo.Domain.Role;
+import com.example.demo.Dao.AppUserDao;
+import com.example.demo.Dao.RoleDao;
 import com.example.demo.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,15 +29,15 @@ public class DemoApplication {
 	@Bean
 	CommandLineRunner run(UserService userService) {
 		return args -> {
-			userService.saveRole(new Role(null, "ROLE_USER"));
-			userService.saveRole(new Role(null, "ROLE_MANAGER"));
-			userService.saveRole(new Role(null, "ROLE_ADMIN"));
-			userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
+			userService.saveRole(new RoleDao(null, "ROLE_USER"));
+			userService.saveRole(new RoleDao(null, "ROLE_MANAGER"));
+			userService.saveRole(new RoleDao(null, "ROLE_ADMIN"));
+			userService.saveRole(new RoleDao(null, "ROLE_SUPER_ADMIN"));
 
-			userService.saveUser(new AppUser(null, "Sarthak Shashi", "Sarthak2501", "1234", new ArrayList<>()));
-			userService.saveUser(new AppUser(null, "Shubham Shashi", "Shubham0408", "2341", new ArrayList<>()));
-			userService.saveUser(new AppUser(null, "ranjit singh", "Ranjit3261", "3421", new ArrayList<>()));
-			userService.saveUser(new AppUser(null, "Himanshu vedi", "Himanshu4848", "4321", new ArrayList<>()));
+			userService.saveUser(new AppUserDao(null, "Sarthak Shashi", "Sarthak2501", "1234", new ArrayList<>()));
+			userService.saveUser(new AppUserDao(null, "Shubham Shashi", "Shubham0408", "2341", new ArrayList<>()));
+			userService.saveUser(new AppUserDao(null, "ranjit singh", "Ranjit3261", "3421", new ArrayList<>()));
+			userService.saveUser(new AppUserDao(null, "Himanshu vedi", "Himanshu4848", "4321", new ArrayList<>()));
 
 			userService.addRoleToUser("Sarthak2501", "ROLE_USER");
 			userService.addRoleToUser("Shubham0408", "ROLE_MANAGER");

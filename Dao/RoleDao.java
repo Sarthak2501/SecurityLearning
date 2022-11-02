@@ -1,4 +1,4 @@
-package com.example.demo.Domain;
+package com.example.demo.Dao;
 
 
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+public class RoleDao {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Domain.AppUser;
-import com.example.demo.Domain.Role;
+import com.example.demo.Dao.AppUserDao;
+import com.example.demo.Dao.RoleDao;
 import com.example.demo.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -15,27 +15,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-public class userResources {
+public class userController {
     private final UserService userService;
 
     @GetMapping()
-    public ResponseEntity<List<AppUser>> getUsers() {
+    public ResponseEntity<List<AppUserDao>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/user/save").toUriString());
+    @PostMapping()
+    public ResponseEntity<AppUserDao> saveUser(@RequestBody AppUserDao appUser) {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1").toUriString());
         return ResponseEntity.created(null).body(userService.saveUser(appUser));
     }
 
-    @PostMapping("/role/save")
-    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/role/save").toUriString());
+    @PostMapping("/role")
+    public ResponseEntity<RoleDao> saveRole(@RequestBody RoleDao role) {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/role").toUriString());
         return ResponseEntity.created(uri).body(userService.saveRole(role));
     }
 
-    @PostMapping("/role/addtouser")
+    @PostMapping("{username}/role")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
         userService.addRoleToUser(form.getUsername(), form.getRolename());
         return ResponseEntity.ok().build();
